@@ -272,6 +272,18 @@ public class HidDevice {
     return HidApi.getIndexedString(hidDeviceStructure, index);
   }
 
+  /**
+   * <p>Get a byte array from a HID device, based on its string index</p>
+   *
+   * @param index The index
+   * @param bufferSize The size of the buffer / response
+   *
+   * @return The buffer
+   */
+  public byte[] getIndexedStringBytes(int index, int bufferSize) {
+    return HidApi.getIndexedStringBytes(hidDeviceStructure, index, bufferSize);
+  }
+
   public boolean isOpen() {
     return hidDeviceStructure != null;
   }

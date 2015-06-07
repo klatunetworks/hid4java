@@ -403,4 +403,24 @@ public class HidApi {
 
     return res == -1 ? null : wStr.toString();
   }
+
+  /**
+   * <p>Get an indexed string as a byte array from a HID device, based on its string index</p>
+   *
+   * @param device The HID device
+   * @param idx    The index
+   * @param bufferSize The size of the newly allocated buffer
+   *
+   * @return The buffer byte array filled with the indexed string response
+   */
+  public static byte[] getIndexedStringBytes(HidDeviceStructure device, int idx, int bufferSize) {
+    if(device == null) {
+      return null;
+    }
+
+    WideStringBuffer buffer = new WideStringBuffer(bufferSize);
+    int result = hidApiLibrary.hid_get_indexed_string(device.ptr(), idx, buffer, bufferSize);
+
+    return result == -1 ? null : buffer.buffer;
+  }
 }
